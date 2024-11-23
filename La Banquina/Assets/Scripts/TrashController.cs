@@ -24,12 +24,16 @@ public class TrashController : MonoBehaviour
             if(speed > 0f)
             {
                 Destroy(gameObject);
-                Destroy(collision.gameObject); //Aqui iria lo que pase con el lobo
+                collision.gameObject.GetComponent<MarineWolfController>().chasing = true;
+                collision.gameObject.GetComponent<MarineWolfController>().target = GameObject.Find("WolfExit").GetComponent<Transform>();
             }
             else
             {
-                Destroy(gameObject);
-                //Aca va lo que pasa con el lobo al comer la basura
+                if (collision.gameObject.GetComponent<MarineWolfController>().target.gameObject == this.gameObject)
+                {
+                    Destroy(gameObject);
+                    collision.gameObject.GetComponent<MarineWolfController>().target = GameObject.Find("WolfExit").GetComponent<Transform>();
+                }
             }
         }
         else if (collision.CompareTag("TrashZone"))
