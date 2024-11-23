@@ -26,6 +26,11 @@ public class TrashController : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(collision.gameObject); //Aqui iria lo que pase con el lobo
             }
+            else
+            {
+                Destroy(gameObject);
+                //Aca va lo que pasa con el lobo al comer la basura
+            }
         }
         else if (collision.CompareTag("TrashZone"))
         {
@@ -43,9 +48,24 @@ public class TrashController : MonoBehaviour
             yield return null;
         }
         speed = 0;
+        GetMarineWolfs();
     }
 
-    private void OnDrawGizmos()
+    private void GetMarineWolfs()
+    {
+        MarineWolfController[] marineWolfs = FindObjectsOfType<MarineWolfController>();
+        foreach (MarineWolfController marineWolf in marineWolfs)
+        {
+            if (marineWolf.chasing == false)
+            {
+                marineWolf.chasing = true;
+                marineWolf.target = gameObject.transform;
+                break;
+            }
+        }
+    }
+
+    void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, 3f);
     }
