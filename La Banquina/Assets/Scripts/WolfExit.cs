@@ -8,6 +8,7 @@ public class WolfExit : MonoBehaviour
     {
         if (collision.CompareTag("MarineWolf"))
         {
+            GameManager.instance.SubstractMarineWolf();
             Destroy(collision.gameObject);
         }
     }

@@ -5,6 +5,7 @@ public class MenuController : MonoBehaviour
 {
     private GameObject menuPanel;
     private GameObject creditsPanel;
+    private GameObject instructionsPanel;
     public Texture2D cursorHandTexture;
     private Texture2D defaultCursor;
 
@@ -12,7 +13,9 @@ public class MenuController : MonoBehaviour
     {
         menuPanel = GameObject.Find("MainMenu");
         creditsPanel = GameObject.Find("CreditsPanel");
+        instructionsPanel = GameObject.Find("InstructionsPanel");
         creditsPanel.SetActive(false);
+        instructionsPanel.SetActive(false);
         defaultCursor = null;
     }
     public void StartGame()
@@ -27,10 +30,24 @@ public class MenuController : MonoBehaviour
         SetCursorExit();
     }
 
+    public void Instructions()
+    {
+        menuPanel.SetActive(false);
+        instructionsPanel.SetActive(true);
+        SetCursorExit();
+    }
+
     public void BackButton()
     {
         menuPanel.SetActive(true);
         creditsPanel.SetActive(false);
+        SetCursorExit();
+    }
+
+    public void BackButtonInstructions()
+    {
+        menuPanel.SetActive(true);
+        instructionsPanel.SetActive(false);
         SetCursorExit();
     }
 
