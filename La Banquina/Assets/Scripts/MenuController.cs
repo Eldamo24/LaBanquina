@@ -8,9 +8,12 @@ public class MenuController : MonoBehaviour
     private GameObject instructionsPanel;
     public Texture2D cursorHandTexture;
     private Texture2D defaultCursor;
+    public AudioClip buttonSound;
+    private AudioSource audio;
 
     private void Start()
     {
+        audio = GameObject.Find("SFX").GetComponent<AudioSource>();
         menuPanel = GameObject.Find("MainMenu");
         creditsPanel = GameObject.Find("CreditsPanel");
         instructionsPanel = GameObject.Find("InstructionsPanel");
@@ -59,6 +62,7 @@ public class MenuController : MonoBehaviour
     public void SetCursorOver()
     {
         Cursor.SetCursor(cursorHandTexture, Vector2.zero, CursorMode.Auto);
+        audio.PlayOneShot(buttonSound);
     }
 
     public void SetCursorExit()
