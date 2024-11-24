@@ -6,6 +6,7 @@ public class MenuController : MonoBehaviour
     private GameObject menuPanel;
     private GameObject creditsPanel;
     private GameObject instructionsPanel;
+    private GameObject UIInGame;
     public Texture2D cursorHandTexture;
     private Texture2D defaultCursor;
     public AudioClip buttonSound;
@@ -14,13 +15,22 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         audio = GameObject.Find("SFX").GetComponent<AudioSource>();
-        menuPanel = GameObject.Find("MainMenu");
-        creditsPanel = GameObject.Find("CreditsPanel");
-        instructionsPanel = GameObject.Find("InstructionsPanel");
-        creditsPanel.SetActive(false);
-        instructionsPanel.SetActive(false);
+        if(SceneManager.GetActiveScene().name != "Level1")
+        {
+            menuPanel = GameObject.Find("MainMenu");
+            creditsPanel = GameObject.Find("CreditsPanel");
+            instructionsPanel = GameObject.Find("InstructionsPanel");
+            creditsPanel.SetActive(false);
+            instructionsPanel.SetActive(false);
+        }
         defaultCursor = null;
     }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Level1");

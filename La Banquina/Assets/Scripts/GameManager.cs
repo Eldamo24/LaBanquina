@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,13 +10,17 @@ public class GameManager : MonoBehaviour
     private int touristAmount = 1;
     private int instantiatedTourists = 0;
     public int destroyedTourists = 0;
+    private GameObject UIPanelInGame;
+    [SerializeField] private TMP_Text winOrLoseText;
 
     private void Start()
     {
         instance = this;
+        Time.timeScale = 1f;
         marineWolfsAmount = FindObjectsOfType<MarineWolfController>().Length;
         StartCoroutine("InstantiateTourist");
-        Debug.Log(marineWolfsAmount);
+        UIPanelInGame = GameObject.Find("InGameUI");
+        UIPanelInGame.SetActive(false);
     }
 
     IEnumerator InstantiateTourist()
@@ -32,7 +37,9 @@ public class GameManager : MonoBehaviour
     {
         if (destroyedTourists == touristAmount)
         {
-            print("You win");
+            UIPanelInGame.SetActive(true);
+            winOrLoseText.text = "You Win";
+            Time.timeScale = 0f;
         }
     }
 
@@ -46,7 +53,9 @@ public class GameManager : MonoBehaviour
     {
         if(marineWolfsAmount <= 0)
         {
-            print("You lose");
+            UIPanelInGame.SetActive(true);
+            winOrLoseText.text = "You Win";
+            Time.timeScale = 0f;
         }
     }
 }
