@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -9,8 +8,14 @@ public class EnemyAttack : MonoBehaviour
     {
         gameObject.GetComponent<EnemyMovement>().anim.SetBool("Idle", true);
         yield return new WaitForSeconds(2f);
-        Instantiate(food, transform.position, Quaternion.identity);
-        gameObject.GetComponent<EnemyMovement>().anim.SetBool("Idle", false);
+        Instanciar();
         yield return new WaitForSeconds(pauseDuration);
+        gameObject.GetComponent<EnemyMovement>().anim.SetBool("Idle", false);
+        StopCoroutine("PerformRandomAction");
+    }
+
+    private void Instanciar()
+    {
+        Instantiate(food, transform.position, Quaternion.identity);
     }
 }

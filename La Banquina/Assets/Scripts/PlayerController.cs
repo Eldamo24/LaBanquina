@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         Flip();
         Vector2 movement = transform.right * horizontalInput * speed * Time.deltaTime;
         movement = rb.position + movement;
-        movement.x = Mathf.Clamp(movement.x, -8.3f, 8.3f);
+        movement.x = Mathf.Clamp(movement.x, -14f, 14f);
         rb.MovePosition(movement);
     }
 

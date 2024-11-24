@@ -1,14 +1,13 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private GameObject[] tourist;
     private int marineWolfsAmount;
-    private int touristAmount = 1;
+    private int touristAmount = 10;
     private int instantiatedTourists = 0;
     public int destroyedTourists = 0;
     private GameObject UIPanelInGame;
@@ -32,7 +31,7 @@ public class GameManager : MonoBehaviour
         {
             Instantiate(tourist[Random.Range(0, tourist.Length)], new Vector2(10000f, 10000f), Quaternion.identity).SetActive(true);
             instantiatedTourists++;
-            yield return new WaitForSeconds(Random.Range(60, 80));
+            yield return new WaitForSeconds(Random.Range(20, 60));
         }
     }
     
@@ -58,6 +57,7 @@ public class GameManager : MonoBehaviour
         {
             UIPanelInGame.SetActive(true);
             image.SetActive(true);
+            anim.Play("Cry");
             winOrLoseText.text = "You Lose";
             Time.timeScale = 0f;
         }

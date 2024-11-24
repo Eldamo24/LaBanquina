@@ -46,3 +46,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Back
+    uniqueID: 3616026995
+    locked: 0
+  - name: Mid
+    uniqueID: 953043247
+    locked: 0
+  - name: Sea
+    uniqueID: 3215955789
+    locked: 0
+  - name: Player
+    uniqueID: 1266858541
+    locked: 0
+  - name: Trash
+    uniqueID: 738225823
+    locked: 0
