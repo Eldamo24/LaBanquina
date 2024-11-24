@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int destroyedTourists = 0;
     private GameObject UIPanelInGame;
     [SerializeField] private TMP_Text winOrLoseText;
+    [SerializeField] private Animator anim;
+    [SerializeField] private GameObject image;
 
     private void Start()
     {
@@ -54,7 +57,8 @@ public class GameManager : MonoBehaviour
         if(marineWolfsAmount <= 0)
         {
             UIPanelInGame.SetActive(true);
-            winOrLoseText.text = "You Win";
+            image.SetActive(true);
+            winOrLoseText.text = "You Lose";
             Time.timeScale = 0f;
         }
     }
